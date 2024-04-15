@@ -29,7 +29,10 @@ public:
 
 public:
 	// The scene sprite sheet loaded into an SDL_Texture
-	SDL_Texture* bgTexture = nullptr;
+	SDL_Texture* bgTexture = nullptr; //Water texture
+	SDL_Texture* titleTexture = nullptr; //1943Logo texture
+	const char* fontTexturePath; //font texture
+	int font;
 };
 
 #endif

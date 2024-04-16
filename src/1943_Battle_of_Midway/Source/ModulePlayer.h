@@ -47,12 +47,8 @@ public:
 	Animation* currentAnimation = nullptr;
 
 	// A set of animations
-	Animation idleAnim;
-	Animation upAnim;
-	Animation downAnim;
-	Animation rightAnim;
-	Animation leftAnim;
-
+	Animation idleAnim, upAnim, downAnim, rightAnim, leftAnim;
+	
 	// The player's collider
 	Collider* collider = nullptr;
 
@@ -67,7 +63,6 @@ public:
 	uint score = 000;
 	int scoreFont = -1;
 	char scoreText[10] = { "\0" };
-
 };
 
 #endif //!__MODULE_PLAYER_H__

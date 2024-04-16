@@ -47,8 +47,9 @@ bool ModulePlayer::Start()
 	laserFx = App->audio->LoadFx("Assets/Fx/shoot.wav");
 	explosionFx = App->audio->LoadFx("Assets/Fx/explosion.wav");
 
-	position.x = 215;
-	position.y = 12900;
+	// Position the player to the bottom center of the screen at the start
+	position.x = 256;
+	position.y = 480;
 
 	destroyed = false;
 
@@ -72,7 +73,7 @@ bool ModulePlayer::Start()
 Update_Status ModulePlayer::Update()
 {
 	// Moving the player with the camera scroll
-	App->player->position.y -= 1;
+	// App->player->position.y -= 1;
 
 	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT)
 	{
@@ -158,13 +159,13 @@ Update_Status ModulePlayer::PostUpdate()
 	sprintf_s(scoreText, 10, "%7d", score);
 
 	// TODO 3: Blit the text of the score in at the bottom of the screen
-	App->fonts->BlitText(15, 20, scoreFont, scoreText);
-	App->fonts->BlitText(415, 20, scoreFont, scoreText);
-	App->fonts->BlitText(225, 20, scoreFont, scoreText);
+	//App->fonts->BlitText(15, 20, scoreFont, scoreText);
+	//App->fonts->BlitText(415, 20, scoreFont, scoreText);
+	//App->fonts->BlitText(225, 20, scoreFont, scoreText);
 
-	App->fonts->BlitText(10, 10, scoreFont, "1player");
-	App->fonts->BlitText(410, 10, scoreFont, "2player");
-	App->fonts->BlitText(220, 10, scoreFont, "highscore");
+	//App->fonts->BlitText(10, 10, scoreFont, "1player");
+	//App->fonts->BlitText(410, 10, scoreFont, "2player");
+	//App->fonts->BlitText(220, 10, scoreFont, "highscore");
 
 	return Update_Status::UPDATE_CONTINUE;
 }

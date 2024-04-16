@@ -33,8 +33,8 @@ Application::Application()
 	modules[4] =    teamMembers  =  new TeamMembers(false);
 	modules[5] =    projectTutors = new ProjectTutors(false);
 	modules[6] =	sceneIntro =	new SceneIntro(false);
-	modules[7] =    sceneMenu =     new SceneMenu(true);       //Menu scene starts disabled
-	modules[8] =	sceneLevel_1 =	new SceneLevel1(false);		//Gameplay scene starts disabled
+	modules[7] =    sceneMenu =     new SceneMenu(false);       //Menu scene starts disabled
+	modules[8] =	sceneLevel_1 =	new SceneLevel1(true);		//Gameplay scene starts disabled
 	modules[9] =	player =		new ModulePlayer(false);	//Player starts disabled
 	modules[10] =	particles =		new ModuleParticles(true);
 	modules[11] =	enemies =		new ModuleEnemies(false);	//Enemies start disabled

@@ -4,7 +4,9 @@
 #include "Module.h"
 #include "Animation.h"
 
-struct SDL_Texture;
+struct SDL_Texture {
+	int w, h;
+};
 
 class SceneLevel1 : public Module
 {
@@ -33,7 +35,10 @@ public:
 public:
 	
 	// The scene sprite sheet loaded into an SDL_Texture
-	SDL_Texture* bgTexture = nullptr;
+	SDL_Texture* waterTex = nullptr;
+	SDL_Texture* waterTex2 = nullptr;
+	int scrollBg;
+	int texHeight;
 };
 
 #endif

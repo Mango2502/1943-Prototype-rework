@@ -25,9 +25,10 @@ bool SceneLevel1::Start()
 
 	bool ret = true;
 
-	bgTexture = App->textures->Load("Assets/Sprites/water.png");
-	App->audio->PlayMusic("Assets/Music/GamePlayAudio.ogg", 1.0f);
+	waterTex = waterTex2 = App->textures->Load("Assets/Sprites/water.png");
+	// App->audio->PlayMusic("Assets/Music/GamePlayAudio.ogg", 1.0f);
 
+#pragma region // load enemies
 	// Enemies ---
 	App->enemies->AddEnemy(Enemy_Type::REDBIRD, 200, 12090);
 	App->enemies->AddEnemy(Enemy_Type::REDBIRD, 220, 12070);
@@ -45,19 +46,27 @@ bool SceneLevel1::Start()
 	App->enemies->AddEnemy(Enemy_Type::BROWNSHIP, 320, 12030);
 
 	App->enemies->AddEnemy(Enemy_Type::MECH, 900, 195);
+#pragma endregion
 
 	App->render->camera.x = 0;
-	App->render->camera.y = 12500;
+	App->render->camera.y = 0;
 
 	App->player->Enable();
-	App->enemies->Enable();
+	// DISABlED THE ENEMIES
+	// App->enemies->Enable();
 
+	uint bgW, bgH;
+	App->textures->GetTextureSize(waterTex, bgW, bgH);
+	waterTex->h = bgH;
+
+	scrollBg = 0.0f;
 	return ret;
 }
 
 Update_Status SceneLevel1::Update()
 {
-	App->render->camera.y -= 0.5f;
+	// App->render->camera.y -= 1.0f;
+	scrollBg += 1.0f;
 
 	return Update_Status::UPDATE_CONTINUE;
 }
@@ -66,7 +75,11 @@ Update_Status SceneLevel1::Update()
 Update_Status SceneLevel1::PostUpdate()
 {
 	// Draw everything --------------------------------------
-	App->render->Blit(bgTexture, 0, 0, NULL);
+	App->render->Blit(waterTex, 0, scrollBg, NULL);
+	App->render->Blit(waterTex2, 0, -waterTex->h + scrollBg, NULL);
+
+	if (scrollBg >= waterTex->h)
+		scrollBg = 0.0f;
 
 	return Update_Status::UPDATE_CONTINUE;
 }

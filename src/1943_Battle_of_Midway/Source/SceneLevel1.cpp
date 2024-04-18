@@ -25,7 +25,10 @@ bool SceneLevel1::Start()
 
 	bool ret = true;
 
-	waterTex = waterTex2 = App->textures->Load("Assets/Sprites/water.png");
+	waterTex = new Background;
+	waterTex2 = new Background;
+
+	waterTex->texture = waterTex2->texture = App->textures->Load("Assets/Sprites/water.png");
 	// App->audio->PlayMusic("Assets/Music/GamePlayAudio.ogg", 1.0f);
 
 #pragma region // load enemies
@@ -56,8 +59,9 @@ bool SceneLevel1::Start()
 	// App->enemies->Enable();
 
 	uint bgW, bgH;
-	App->textures->GetTextureSize(waterTex, bgW, bgH);
+	App->textures->GetTextureSize(waterTex->texture, bgW, bgH);
 	waterTex->h = bgH;
+	waterTex->w = bgW;
 
 	scrollBg = 0.0f;
 	return ret;
@@ -75,8 +79,8 @@ Update_Status SceneLevel1::Update()
 Update_Status SceneLevel1::PostUpdate()
 {
 	// Draw everything --------------------------------------
-	App->render->Blit(waterTex, 0, scrollBg, NULL);
-	App->render->Blit(waterTex2, 0, -waterTex->h + scrollBg, NULL);
+	App->render->Blit(waterTex->texture, 0, scrollBg, NULL);
+	App->render->Blit(waterTex2->texture, 0, -waterTex->h + scrollBg, NULL);
 
 	if (scrollBg >= waterTex->h)
 		scrollBg = 0.0f;

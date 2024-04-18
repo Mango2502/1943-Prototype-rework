@@ -62,9 +62,10 @@ bool ModulePlayer::Start()
 	// TODO 4: Try loading "rtype_font3.png" that has two rows to test if all calculations are correct
 	//char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
 	//scoreFont = App->fonts->Load("Assets/Fonts/rtype_font3.png", lookupTable, 2);
-	char lookupTable1[] = { "E000   1234567890" };
-	//char lookupTable2[] = { "01234567890ABCDEFGHIJKMNOPQRSTUVWXYZ" };
-	scoreFont = App->fonts->Load("Assets/scores.png", lookupTable1, 1);
+	char lookupTable1[] = { "E0001234567890" };
+	pointsFont = App->fonts->Load("Assets/Fonts/scores.png", lookupTable1, 1);
+	char lookupTable2[] = { "0123456789abcdefghijklmnopqrstuvwxyz    " };
+	scoreFont = App->fonts->Load("Assets/Fonts/text1.png", lookupTable2, 4);
 	
 
 	return ret;
@@ -107,6 +108,7 @@ Update_Status ModulePlayer::Update()
 
 	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
 	{
+		score++;
 		Particle* newParticle = App->particles->AddParticle(App->particles->laser, position.x + 12, position.y + 1, Collider::Type::PLAYER_SHOT);
 		newParticle->collider->AddListener(this);
 		App->audio->PlayFx(laserFx);
@@ -156,16 +158,16 @@ Update_Status ModulePlayer::PostUpdate()
 	}
 
 	// Draw UI (score) --------------------------------------
-	sprintf_s(scoreText, 10, "%7d", score);
+	sprintf_s(scoreText, 4, "%3d", score);
 
 	// TODO 3: Blit the text of the score in at the bottom of the screen
-	//App->fonts->BlitText(15, 20, scoreFont, scoreText);
-	//App->fonts->BlitText(415, 20, scoreFont, scoreText);
-	//App->fonts->BlitText(225, 20, scoreFont, scoreText);
+	App->fonts->BlitText(15, 20, pointsFont, scoreText);
+	App->fonts->BlitText(415, 20, pointsFont, scoreText);
+	App->fonts->BlitText(225, 20, pointsFont, scoreText);
 
-	//App->fonts->BlitText(10, 10, scoreFont, "1player");
-	//App->fonts->BlitText(410, 10, scoreFont, "2player");
-	//App->fonts->BlitText(220, 10, scoreFont, "highscore");
+	App->fonts->BlitText(10, 10, scoreFont, "1player");
+	App->fonts->BlitText(410, 10, scoreFont, "2player");
+	App->fonts->BlitText(220, 10, scoreFont, "highscore");
 
 	return Update_Status::UPDATE_CONTINUE;
 }

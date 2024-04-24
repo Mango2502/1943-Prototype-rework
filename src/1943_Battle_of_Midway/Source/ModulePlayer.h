@@ -23,11 +23,11 @@ public:
 
 	// Called at the middle of the application loop
 	// Processes new input and handles player movement
-	Update_Status Update() override;
+	Update_Status Update(float deltaTime) override;
 
 	// Called at the end of the application loop
 	// Performs the render call of the player sprite
-	Update_Status PostUpdate() override;
+	Update_Status PostUpdate(float deltaTime) override;
 
 	// Collision callback, called when the player intersects with another collider
 	void OnCollision(Collider* c1, Collider* c2) override;
@@ -37,7 +37,7 @@ public:
 	iPoint position;
 
 	// The speed in which we move the player (pixels per frame)
-	int speed = 1;
+	float speed = 100.0f;
 
 	// The player spritesheet loaded into an SDL_Texture
 	SDL_Texture* texture = nullptr;

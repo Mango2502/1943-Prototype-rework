@@ -15,17 +15,17 @@ bool Module::Start()
 	return true;
 }
 
-Update_Status Module::PreUpdate()
+Update_Status Module::PreUpdate(float deltaTime)
 {
 	return Update_Status::UPDATE_CONTINUE;
 }
 
-Update_Status Module::Update()
+Update_Status Module::Update(float deltaTime)
 {
 	return Update_Status::UPDATE_CONTINUE;
 }
 
-Update_Status Module::PostUpdate()
+Update_Status Module::PostUpdate(float deltaTime)
 {
 	return Update_Status::UPDATE_CONTINUE;
 }

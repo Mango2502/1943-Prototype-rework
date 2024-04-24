@@ -71,14 +71,22 @@ bool ModulePlayer::Start()
 	return ret;
 }
 
-Update_Status ModulePlayer::Update()
+Update_Status ModulePlayer::Update(float deltaTime)
 {
 	// Moving the player with the camera scroll
 	// App->player->position.y -= 1;
+	LOG("player posX: %2f", position.x);
+	LOG("player posY: %2f", position.y);
+
+	if (App->input->keys[SDL_SCANCODE_P] == Key_State::KEY_DOWN)
+	{
+		App->render->camera.x = position.x;
+		App->render->camera.y = position.y;
+	}
 
 	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT)
 	{
-		position.x -= speed;
+		position.x -= speed * deltaTime;
 		if (currentAnimation != &leftAnim)
 		{
 			leftAnim.Reset();
@@ -88,7 +96,7 @@ Update_Status ModulePlayer::Update()
 
 	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT)
 	{
-		position.x += speed;
+		position.x += speed * deltaTime;
 		if (currentAnimation != &rightAnim)
 		{
 			rightAnim.Reset();
@@ -98,12 +106,12 @@ Update_Status ModulePlayer::Update()
 
 	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT)
 	{
-		position.y += speed;
+		position.y += speed * deltaTime;
 	}
 
 	if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT)
 	{
-		position.y -= speed;
+		position.y -= speed * deltaTime;
 	}
 
 	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
@@ -123,12 +131,12 @@ Update_Status ModulePlayer::Update()
 
 	if (position.x == 450)
 	{
-		position.x -= speed ;
+		position.x -= speed * deltaTime;
 	}
 
 	if (position.x == 0)
 	{
-		position.x += speed;
+		position.x += speed * deltaTime;
 	}
 
 	//There should be a code to implement the restrictions of the Y axis for the player.
@@ -144,12 +152,12 @@ Update_Status ModulePlayer::Update()
 
 	collider->SetPos(position.x, position.y);
 
-	currentAnimation->Update();
+	currentAnimation->Update(deltaTime);
 
 	return Update_Status::UPDATE_CONTINUE;
 }
 
-Update_Status ModulePlayer::PostUpdate()
+Update_Status ModulePlayer::PostUpdate(float deltaTime)
 {
 	if (!destroyed)
 	{

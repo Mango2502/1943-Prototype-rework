@@ -24,7 +24,7 @@ bool ModuleFadeToBlack::Start()
 	return true;
 }
 
-Update_Status ModuleFadeToBlack::Update()
+Update_Status ModuleFadeToBlack::Update(float deltaTime)
 {
 	// Exit this function if we are not performing a fade
 	if (currentStep == Fade_Step::NONE) return Update_Status::UPDATE_CONTINUE;
@@ -52,7 +52,7 @@ Update_Status ModuleFadeToBlack::Update()
 	return Update_Status::UPDATE_CONTINUE;
 }
 
-Update_Status ModuleFadeToBlack::PostUpdate()
+Update_Status ModuleFadeToBlack::PostUpdate(float deltaTime)
 {
 	// Exit this function if we are not performing a fade
 	if (currentStep == Fade_Step::NONE) return Update_Status::UPDATE_CONTINUE;

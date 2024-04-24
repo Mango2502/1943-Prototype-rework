@@ -32,7 +32,7 @@ bool SceneIntro::Start()
 	return ret;
 }
 
-Update_Status SceneIntro::Update()
+Update_Status SceneIntro::Update(float deltaTime)
 {
 		App->fade->FadeToBlack(this, (Module*)App->sceneMenu, 50);
 	
@@ -40,7 +40,7 @@ Update_Status SceneIntro::Update()
 }
 
 // Update: draw background
-Update_Status SceneIntro::PostUpdate()
+Update_Status SceneIntro::PostUpdate(float deltaTime)
 {
 	// Draw everything --------------------------------------
 	App->render->Blit(bgTexture, 0, 0, NULL);

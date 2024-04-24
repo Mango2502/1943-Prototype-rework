@@ -21,7 +21,7 @@ public:
 	// Called in ModuleParticles' Update
 	// Handles the logic of the particle
 	// Returns false when the particle reaches its lifetime
-	bool Update();
+	bool Update(float deltaTime);
 
 	// Sets flag for deletion and for the collider aswell
 	void SetToDelete();

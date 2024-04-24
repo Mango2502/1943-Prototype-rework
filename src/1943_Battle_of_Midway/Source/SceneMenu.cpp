@@ -42,7 +42,7 @@ bool SceneMenu::Start()
 	return ret;
 }
 
-Update_Status SceneMenu::Update()
+Update_Status SceneMenu::Update(float deltaTime)
 {
 	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
 	{
@@ -54,7 +54,7 @@ Update_Status SceneMenu::Update()
 	return Update_Status::UPDATE_CONTINUE;
 }
 
-Update_Status SceneMenu ::PostUpdate()
+Update_Status SceneMenu ::PostUpdate(float deltaTime)
 {
 	// Draw everything --------------------------------------
 	App->render->Blit(bgTexture, 0, 0, NULL);           // Water texture

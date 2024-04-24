@@ -30,7 +30,7 @@ bool ProjectTutors::Start()
 	return ret;
 }
 
-Update_Status ProjectTutors::Update()
+Update_Status ProjectTutors::Update(float deltaTime)
 {
 		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 50);
 	
@@ -38,7 +38,7 @@ Update_Status ProjectTutors::Update()
 }
 
 // Update: draw background
-Update_Status ProjectTutors::PostUpdate()
+Update_Status ProjectTutors::PostUpdate(float deltaTime)
 {
 	// Draw everything --------------------------------------
 	App->render->Blit(bgTexture, 0, 0, NULL);

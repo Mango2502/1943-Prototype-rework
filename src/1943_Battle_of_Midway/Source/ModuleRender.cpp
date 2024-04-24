@@ -41,7 +41,7 @@ bool ModuleRender::Init()
 }
 
 // Called every draw update
-Update_Status ModuleRender::PreUpdate()
+Update_Status ModuleRender::PreUpdate(float deltaTime)
 {
 	//Set the color used for drawing operations
 	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
@@ -52,7 +52,7 @@ Update_Status ModuleRender::PreUpdate()
 	return Update_Status::UPDATE_CONTINUE;
 }
 
-Update_Status ModuleRender::Update()
+Update_Status ModuleRender::Update(float deltaTime)
 {
 	//Handle positive vertical movement
 	if (App->input->keys[SDL_SCANCODE_UP] == KEY_REPEAT)
@@ -73,7 +73,7 @@ Update_Status ModuleRender::Update()
 	return Update_Status::UPDATE_CONTINUE;
 }
 
-Update_Status ModuleRender::PostUpdate()
+Update_Status ModuleRender::PostUpdate(float deltaTime)
 {
 	//Update the screen
 	SDL_RenderPresent(renderer);

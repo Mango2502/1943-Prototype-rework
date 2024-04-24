@@ -2,6 +2,7 @@
 #define __APPLICATION_H__
 
 #include "Globals.h"
+#include "SDL/include/SDL.h"
 
 #define NUM_MODULES 16
 
@@ -38,7 +39,7 @@ public:
 	bool Init();
 
 	//Updates all modules (PreUpdate, Update and PostUpdate)
-	Update_Status Update();
+	Update_Status Update(float deltaTime);
 
 	//Releases all the application data
 	bool CleanUp();
@@ -69,6 +70,11 @@ public:
 	ModuleFonts* fonts = nullptr;
 
 	ModuleRender* render = nullptr;
+
+	int FPS = 60;
+	float deltaTime = 0.0f;
+	float msFrame = 0.0f;
+	Uint32 startUpdate;
 };
 
 // Global var made extern for Application ---

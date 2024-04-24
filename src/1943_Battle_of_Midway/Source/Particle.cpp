@@ -20,7 +20,7 @@ Particle::~Particle()
 		collider->pendingToDelete = true;
 }
 
-bool Particle::Update()
+bool Particle::Update(float deltaTime)
 {
 	bool ret = true;
 	frameCount++;
@@ -31,7 +31,7 @@ bool Particle::Update()
 
 	if (isAlive)
 	{
-		anim.Update();
+		anim.Update(deltaTime);
 
 		// If the particle has a specific lifetime, check when it has to be destroyed
 		if (lifetime > 0)

@@ -50,7 +50,7 @@ bool ModuleParticles::Start()
 	return true;
 }
 
-Update_Status ModuleParticles::PreUpdate()
+Update_Status ModuleParticles::PreUpdate(float deltaTime)
 {
 	// Remove all particles scheduled for deletion
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
@@ -96,7 +96,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 	}
 }
 
-Update_Status ModuleParticles::Update()
+Update_Status ModuleParticles::Update(float deltaTime)
 {
 	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
@@ -105,7 +105,7 @@ Update_Status ModuleParticles::Update()
 		if(particle == nullptr)	continue;
 
 		// Call particle Update. If it has reached its lifetime, destroy it
-		if(particle->Update() == false)
+		if(particle->Update(deltaTime) == false)
 		{
 			particles[i]->SetToDelete();
 		}
@@ -114,7 +114,7 @@ Update_Status ModuleParticles::Update()
 	return Update_Status::UPDATE_CONTINUE;
 }
 
-Update_Status ModuleParticles::PostUpdate()
+Update_Status ModuleParticles::PostUpdate(float deltaTime)
 {
 	//Iterating all particle array and drawing any active particles
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)

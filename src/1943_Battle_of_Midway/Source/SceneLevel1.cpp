@@ -67,16 +67,16 @@ bool SceneLevel1::Start()
 	return ret;
 }
 
-Update_Status SceneLevel1::Update()
+Update_Status SceneLevel1::Update(float deltaTime)
 {
 	// App->render->camera.y -= 1.0f;
-	scrollBg += 1.0f;
+	scrollBg += 100.0f * deltaTime;
 
 	return Update_Status::UPDATE_CONTINUE;
 }
 
 // Update: draw background
-Update_Status SceneLevel1::PostUpdate()
+Update_Status SceneLevel1::PostUpdate(float deltaTime)
 {
 	// Draw everything --------------------------------------
 	App->render->Blit(waterTex->texture, 0, scrollBg, NULL);

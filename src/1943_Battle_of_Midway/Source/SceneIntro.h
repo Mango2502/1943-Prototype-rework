@@ -21,11 +21,11 @@ public:
 
 	// Called at the middle of the application loop
 	// Updates the scene's background animations
-	Update_Status Update() override;
+	Update_Status Update(float deltaTime) override;
 
 	// Called at the end of the application loop.
 	// Performs the render call of all the parts of the scene's background
-	Update_Status PostUpdate() override;
+	Update_Status PostUpdate(float deltaTime) override;
 
 public:
 	// The scene sprite sheet loaded into an SDL_Texture

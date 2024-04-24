@@ -30,7 +30,7 @@ bool TeamMembers::Start()
 	return ret;
 }
 
-Update_Status TeamMembers::Update()
+Update_Status TeamMembers::Update(float deltaTime)
 {
 		App->fade->FadeToBlack(this, (Module*)App->projectTutors, 50);
 	
@@ -38,7 +38,7 @@ Update_Status TeamMembers::Update()
 }
 
 // Update: draw background
-Update_Status TeamMembers::PostUpdate()
+Update_Status TeamMembers::PostUpdate(float deltaTime)
 {
 	// Draw everything --------------------------------------
 	App->render->Blit(bgTexture, 0, 0, NULL);

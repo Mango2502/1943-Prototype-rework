@@ -13,7 +13,7 @@ public:
 	Enemy_RedBird(int x, int y);
 
 	// The enemy is going to perform a sinusoidal movement
-	void Update() override;
+	void Update(float deltaTime) override;
 
 private:
 	// The position (as ratio) in the wave at a specific moment

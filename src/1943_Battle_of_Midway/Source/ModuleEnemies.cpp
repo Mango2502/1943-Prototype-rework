@@ -34,7 +34,7 @@ bool ModuleEnemies::Start()
 }
 
 
-Update_Status ModuleEnemies::PreUpdate()
+Update_Status ModuleEnemies::PreUpdate(float deltaTime)
 {
 	// Remove all enemies scheduled for deletion
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
@@ -49,14 +49,14 @@ Update_Status ModuleEnemies::PreUpdate()
 	return Update_Status::UPDATE_CONTINUE;
 }
 
-Update_Status ModuleEnemies::Update()
+Update_Status ModuleEnemies::Update(float deltaTime)
 {
 	HandleEnemiesSpawn();
 
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
 		if(enemies[i] != nullptr)
-			enemies[i]->Update();
+			enemies[i]->Update(deltaTime);
 	}
 
 	HandleEnemiesDespawn();
@@ -64,7 +64,7 @@ Update_Status ModuleEnemies::Update()
 	return Update_Status::UPDATE_CONTINUE;
 }
 
-Update_Status ModuleEnemies::PostUpdate()
+Update_Status ModuleEnemies::PostUpdate(float deltaTime)
 {
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{

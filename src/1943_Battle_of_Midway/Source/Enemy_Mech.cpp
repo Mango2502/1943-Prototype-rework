@@ -23,13 +23,13 @@ Enemy_Mech::Enemy_Mech(int x, int y) : Enemy(x, y)
 	collider = App->collisions->AddCollider({0, 0, 24, 24}, Collider::Type::ENEMY, (Module*)App->enemies);
 }
 
-void Enemy_Mech::Update()
+void Enemy_Mech::Update(float deltaTime)
 {
-	path.Update();
+	path.Update(deltaTime);
 	position = spawnPos + path.GetRelativePosition();
 	currentAnim = path.GetCurrentAnimation();
 
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
-	Enemy::Update();
+	Enemy::Update(deltaTime);
 }

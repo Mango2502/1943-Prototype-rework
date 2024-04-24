@@ -68,22 +68,35 @@ bool Application::Init()
 	for (int i = 0; i < NUM_MODULES && ret; ++i)
 		ret = modules[i]->IsEnabled() ? modules[i]->Start() : true;
 
+	deltaTime = 0.0f;
+	startUpdate = 0;
+	msFrame = 1.0f / FPS;
 	return ret;
 }
 
-Update_Status Application::Update()
+Update_Status Application::Update(float deltaTime)
 {
 	Update_Status ret = Update_Status::UPDATE_CONTINUE;
+	Uint32 endUpdate = SDL_GetTicks();
+
+	deltaTime = (endUpdate - startUpdate) / 1000.0f;
+	LOG("endupdate - startUpdate: %i",( endUpdate - startUpdate));
+	LOG("deltaTime: %2f", deltaTime);
 
 	for (int i = 0; i < NUM_MODULES && ret == Update_Status::UPDATE_CONTINUE; ++i)
-		ret = modules[i]->IsEnabled() ? modules[i]->PreUpdate() : Update_Status::UPDATE_CONTINUE;
+		ret = modules[i]->IsEnabled() ? modules[i]->PreUpdate(deltaTime) : Update_Status::UPDATE_CONTINUE;
 
 	for (int i = 0; i < NUM_MODULES && ret == Update_Status::UPDATE_CONTINUE; ++i)
-		ret = modules[i]->IsEnabled() ? modules[i]->Update() : Update_Status::UPDATE_CONTINUE;
+		ret = modules[i]->IsEnabled() ? modules[i]->Update(deltaTime) : Update_Status::UPDATE_CONTINUE;
 
 	for (int i = 0; i < NUM_MODULES && ret == Update_Status::UPDATE_CONTINUE; ++i)
-		ret = modules[i]->IsEnabled() ? modules[i]->PostUpdate() : Update_Status::UPDATE_CONTINUE;
+		ret = modules[i]->IsEnabled() ? modules[i]->PostUpdate(deltaTime) : Update_Status::UPDATE_CONTINUE;
 
+	if(msFrame > deltaTime)
+		SDL_Delay(floor((1000 / FPS) - deltaTime));
+
+	startUpdate = endUpdate;
+	LOG("startUpdate %i", startUpdate);
 	return ret;
 }
  

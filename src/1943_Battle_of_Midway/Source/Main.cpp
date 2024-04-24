@@ -52,7 +52,7 @@ int main(int argc, char* argv[])
 
 			case Main_States::MAIN_UPDATE:
 			{
-				Update_Status status = App->Update();
+				Update_Status status = App->Update(App->deltaTime);
 
 				if (status == Update_Status::UPDATE_ERROR)
 				{

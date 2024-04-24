@@ -10,7 +10,7 @@ void Path::PushBack(fPoint speed, uint frames, Animation* animation)
 	totalSteps++;
 }
 
-void Path::Update()
+void Path::Update(float deltaTime)
 {
 	currentStepFrame += 1;
 

@@ -22,7 +22,7 @@ public:
 
 	// Called from inhering enemies' Udpate
 	// Updates animation and collider position
-	virtual void Update();
+	virtual void Update(float deltaTime);
 
 	// Called from ModuleEnemies' Update
 	virtual void Draw();

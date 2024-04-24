@@ -30,7 +30,7 @@ public:
 
 	// Called at the beginning of the application loop
 	// Updates all input data received from SDL
-	Update_Status PreUpdate() override;
+	Update_Status PreUpdate(float deltaTime) override;
 
 	// Called on application exit.
 	// Uninitializes the SDL system for input detection

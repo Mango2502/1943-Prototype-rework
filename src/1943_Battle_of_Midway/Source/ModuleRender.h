@@ -22,16 +22,16 @@ public:
 
 	// Called at the beginning of the application loop
 	// Clears the rendering context to a background color
-	Update_Status PreUpdate() override;
+	Update_Status PreUpdate(float deltaTime) override;
 
 	// Called at the middle of the application loop
 	// Handles camera movement
-	Update_Status Update() override;
+	Update_Status Update(float deltaTime) override;
 
 	// Called at the end of the application loop
 	// Displays a rectangle in the rendering context
 	// Updates the screen with the rendered content
-	Update_Status PostUpdate() override;
+	Update_Status PostUpdate(float deltaTime) override;
 
 	// Called on application exit
 	// Destroys the rendering context

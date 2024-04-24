@@ -24,7 +24,7 @@ bool ModuleInput::Init()
 	return ret;
 }
 
-Update_Status ModuleInput::PreUpdate()
+Update_Status ModuleInput::PreUpdate(float deltaTime)
 {
 	//Read new SDL events, mostly from the window
 	SDL_Event event;

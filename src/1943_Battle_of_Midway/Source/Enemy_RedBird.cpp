@@ -44,14 +44,14 @@ Enemy_RedBird::Enemy_RedBird(int x, int y) : Enemy(x, y)
 	collider = App->collisions->AddCollider({0, 0, 35, 30}, Collider::Type::ENEMY, (Module*)App->enemies);
 }
 
-void Enemy_RedBird::Update()
+void Enemy_RedBird::Update(float deltaTime)
 {
 
-	path.Update();
+	path.Update(deltaTime);
 	position = spawnPos + path.GetRelativePosition();
 	currentAnim = path.GetCurrentAnimation();
 
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
-	Enemy::Update();
+	Enemy::Update(deltaTime);
 }

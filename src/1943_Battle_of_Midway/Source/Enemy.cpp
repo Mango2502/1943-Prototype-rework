@@ -22,10 +22,10 @@ const Collider* Enemy::GetCollider() const
 	return collider;
 }
 
-void Enemy::Update()
+void Enemy::Update(float deltaTime)
 {
 	if (currentAnim != nullptr)
-		currentAnim->Update();
+		currentAnim->Update(deltaTime);
 
 	if (collider != nullptr)
 		collider->SetPos(position.x, position.y);

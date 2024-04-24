@@ -48,7 +48,7 @@ ModuleCollisions::~ModuleCollisions()
 
 }
 
-Update_Status ModuleCollisions::PreUpdate()
+Update_Status ModuleCollisions::PreUpdate(float deltaTime)
 {
 	// Remove all colliders scheduled for deletion
 	for(uint i = 0; i < MAX_COLLIDERS; ++i)
@@ -94,7 +94,7 @@ Update_Status ModuleCollisions::PreUpdate()
 	return Update_Status::UPDATE_CONTINUE;
 }
 
-Update_Status ModuleCollisions::Update()
+Update_Status ModuleCollisions::Update(float deltaTime)
 {
 	if (App->input->keys[SDL_SCANCODE_F1] == KEY_DOWN)
 		debug = !debug;
@@ -102,7 +102,7 @@ Update_Status ModuleCollisions::Update()
 	return Update_Status::UPDATE_CONTINUE;
 }
 
-Update_Status ModuleCollisions::PostUpdate()
+Update_Status ModuleCollisions::PostUpdate(float deltaTime)
 {
 	if (debug)
 		DebugDraw();

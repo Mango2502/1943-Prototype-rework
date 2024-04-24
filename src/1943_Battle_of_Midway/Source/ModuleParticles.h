@@ -28,16 +28,16 @@ public:
 
 	// Called at the beginning of the application loop
 	// Removes all particles pending to delete
-	Update_Status PreUpdate() override;
+	Update_Status PreUpdate(float deltaTime) override;
 
 	// Called at the middle of the application loop
-	// Iterates all the particles and calls its Update()
+	// Iterates all the particles and calls its Update(float deltaTime)
 	// Removes any "dead" particles
-	Update_Status Update() override;
+	Update_Status Update(float deltaTime) override;
 
 	// Called at the end of the application loop
 	// Iterates all the particles and draws them
-	Update_Status PostUpdate() override;
+	Update_Status PostUpdate(float deltaTime) override;
 
 	// Called on application exit
 	// Destroys all active particles left in the array
